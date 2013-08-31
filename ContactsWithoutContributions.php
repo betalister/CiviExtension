@@ -37,7 +37,7 @@ class CRM_Contact_Form_Search_Custom_ContactsWithoutContributions extends CRM_Co
     {
         parent::__construct($formValues);
         $this->_columns = array(
-            ts('Contact ID') => 'contact_id',
+            ts('ID') => 'contact_id',
             ts('Name') => 'sort_name',
             ts('Email') => 'email',
             ts('Phone') => 'phone'
@@ -70,7 +70,7 @@ class CRM_Contact_Form_Search_Custom_ContactsWithoutContributions extends CRM_Co
               civicrm_phone.phone as phone
               ";
         }
-        $groupBy = "GROUP BY contact_a.contact_id";
+        $groupBy = "GROUP BY contact_a.id";
         return $this->sql($selectClause, $offset, $rowcount, $sort, $includeContactIDs, $groupBy);
     }
     function from()
