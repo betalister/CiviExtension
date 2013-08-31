@@ -70,7 +70,7 @@ class CRM_Contact_Form_Search_Custom_ContactsWithoutContributions extends CRM_Co
               civicrm_phone.phone as phone
               ";
         }
-        $groupBy = "GROUP BY id";
+        $groupBy = "GROUP BY contact_a.contact_id";
         return $this->sql($selectClause, $offset, $rowcount, $sort, $includeContactIDs, $groupBy);
     }
     function from()
