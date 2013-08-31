@@ -75,7 +75,7 @@ class CRM_Contact_Form_Search_Custom_ContactsWithoutContributions extends CRM_Co
     function from()
     {
         return "
-        FROM civicrm_contact AS contact_a
+        FROM civicrm_group_contact, civicrm_contact AS contact_a
              LEFT JOIN civicrm_email 
                     ON contact_a.id = civicrm_email.contact_id 
              LEFT JOIN civicrm_phone 
