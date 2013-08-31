@@ -64,7 +64,7 @@ class CRM_Contact_Form_Search_Custom_ContactsWithoutContributions extends CRM_Co
             $selectClause = "contact_a.id as contact_id";
         } else {
             $selectClause = "
-              contact_a.id as contact_id,
+              DISTINCT contact_a.id as contact_id,
               contact_a.sort_name as sort_name,
               civicrm_email.email as email,
               civicrm_phone.phone as phone
@@ -98,6 +98,7 @@ class CRM_Contact_Form_Search_Custom_ContactsWithoutContributions extends CRM_Co
             $clause[] = "civicrm_group_contact.group_id = %{$count}";
         }
         $clause[] = "civicrm_group_contact.status = 'Added'";
+        $clause[] = "contact_a.id = civicrm_group_contact.contact_id";
         $clause[] = "civicrm_contribution.contact_id IS NULL";
         if (!empty($clause)) {
             $where = implode(' AND ', $clause);
