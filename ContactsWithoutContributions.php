@@ -61,11 +61,11 @@ class CRM_Contact_Form_Search_Custom_ContactsWithoutContributions extends CRM_Co
     function all($offset = 0, $rowcount = 0, $sort = NULL, $includeContactIDs = FALSE, $justIDs = FALSE)
     {
         if ($justIDs) {
-            $selectClause = "civicrm_contact.id as contact_id";
+            $selectClause = "contact_a.id as contact_id";
         } else {
             $selectClause = "
-              civicrm_contact.id as contact_id,
-              civicrm_contact.sort_name as sort_name,
+              contact_a.id as contact_id,
+              contact_a.sort_name as sort_name,
               civicrm_email.email as email,
               civicrm_phone.phone as phone
               ";
@@ -75,13 +75,13 @@ class CRM_Contact_Form_Search_Custom_ContactsWithoutContributions extends CRM_Co
     function from()
     {
         return "
-        FROM civicrm_contact 
+        FROM civicrm_contact AS contact_a
              LEFT JOIN civicrm_email 
-                    ON civicrm_contact.id = civicrm_email.contact_id 
+                    ON contact_a.id = civicrm_email.contact_id 
              LEFT JOIN civicrm_phone 
-                    ON civicrm_contact.id = civicrm_phone.contact_id 
+                    ON contact_a.id = civicrm_phone.contact_id 
              LEFT OUTER JOIN civicrm_contribution 
-                          ON civicrm_contact.id = civicrm_contribution.contact_id
+                          ON contact_a.id = civicrm_contribution.contact_id
         ";
     }
     function where($includeContactIDs = FALSE)
